@@ -1,10 +1,10 @@
-const Post = require("../../models/postsjs/Posts.js");
-const { authenticateToken } = require("../authController/auth.js");
-const { checkUsers } = require("../usersControllers/users.js");
-const { checkAdminUsers } = require("../adminController/admin.js");
+import Post from "../../models/postsjs/Posts.js";
+import  authenticateToken  from "../authController/auth.js";
+import  {checkUsers}  from "../usersControllers/users.js";
+import  {checkAdminUsers}  from "../adminController/admin.js";
 
 
-const createPost = async function (req, res) {
+export const createPost = async function (req, res) {
   let name = req.body["name"];
   let email = req.user.email;
   let post_content = req.body["userpost"];
@@ -29,7 +29,7 @@ const createPost = async function (req, res) {
   }
 };
 
-async function checkPost() {
+export async function checkPost() {
   try {
     const result = await Post.findAll();
     return result;
@@ -38,7 +38,7 @@ async function checkPost() {
   }
 }
 
-const viewPosts = async function (req, res) {
+export const viewPosts = async function (req, res) {
   let adminUser = await checkAdminUsers();
   let users = await checkUsers();
   let admin = adminUser.find((user) => user.email == req.user.email);
@@ -54,7 +54,7 @@ const viewPosts = async function (req, res) {
   }
 };
 
-const editPost = async function (req, res) {
+export const editPost = async function (req, res) {
   let postid = req.params.id;
   let users = await checkUsers();
   const posts = await checkPost();
@@ -86,7 +86,7 @@ const editPost = async function (req, res) {
   }
 };
 
-const deletePost = async function (req, res) {
+export const deletePost = async function (req, res) {
   let postid = req.params.id;
   let users = await checkUsers();
   let adminUser = await checkAdminUsers();
@@ -114,4 +114,3 @@ const deletePost = async function (req, res) {
   }
 };
 
-module.exports = { checkPost, createPost, viewPosts, editPost,deletePost };

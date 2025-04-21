@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import sequelize from "../database";
+import sequelize from "../database.js";
 
  
 const Post = sequelize.define('post',{
@@ -29,4 +29,5 @@ const Post = sequelize.define('post',{
 
 Post.sync({alter:true}).then(()=>{console.log('post table created')}).catch((err)=>{console.log(err.message)});
 
- module.exports = Post;
+//  module.exports = Post;
+export default Post;

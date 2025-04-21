@@ -1,10 +1,10 @@
-const express = require("express");
+import  express from "express";
 const router = express.Router();
 
-const {registerUser,loginUsers} = require("../controllers/usersControllers/users.js");
-const {registerAdmin} = require("../controllers/adminController/admin.js");
-const {createPost,viewPosts,editPost, deletePost} = require("../controllers/postsControllers/post.js");
-const {authenticateToken} = require("../controllers/authController/auth.js")
+import {registerUser,loginUsers} from "../controllers/usersControllers/users.js";
+import {registerAdmin} from "../controllers/adminController/admin.js";
+import {createPost, viewPosts, editPost, deletePost} from "../controllers/postsControllers/post.js";
+import authenticateToken from "../controllers/authController/auth.js"
 router.post("/registerUser",registerUser);
 router.post("/registerAdmin",registerAdmin);
 router.post("/login", loginUsers);
@@ -14,4 +14,4 @@ router.put("/editPost/:id", authenticateToken,editPost);
 router.delete("/deletePost/:id", authenticateToken,deletePost);
 
 
-module.exports = router;
+export default router;

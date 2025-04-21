@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import sequelize from "../database";
+import sequelize from "../database.js";
  
 const User = sequelize.define('user',{
     id:{
@@ -24,10 +24,11 @@ const User = sequelize.define('user',{
 },{freezeTableName:true,timestamps:false});
 User.sync({ alter: true })
 .then(() => {
-  console.log("user table cretaed");
+  console.log("user table created");
 })
 .catch((err) => {
   console.log(err.message);
 });
 
- module.exports = User;
+//  module.exports = User;
+export default User;

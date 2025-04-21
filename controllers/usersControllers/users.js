@@ -1,11 +1,11 @@
-const User = require("../../models/Users_js/Users.js");
-const bcryptjs = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+import  User from "../../models/Users_js/Users.js";
+import  bcryptjs from "bcryptjs";
+import  jwt from "jsonwebtoken";
 
-const { checkAdminUsers } = require("../adminController/admin.js");
+import {checkAdminUsers}  from "../adminController/admin.js";
 
 
-async function checkUsers() {
+export async function checkUsers() {
 try{
   const users = await User.findAll()
   return users
@@ -17,7 +17,7 @@ try{
 
 const saltRounds = 10;
 
-const registerUser = function (req, res) {
+export const registerUser = function (req, res) {
   let { name, email, password } = req.body;
   let hashedPassword;
   bcryptjs.hash(password, saltRounds, (err, hash) => {
@@ -39,7 +39,7 @@ const registerUser = function (req, res) {
   });
 };
 
-const loginUsers = async function (req, res){
+export const loginUsers = async function (req, res){
   let email = req.body.email;
   let password = req.body.password;
   const users = await checkUsers();
@@ -85,4 +85,3 @@ const loginUsers = async function (req, res){
   }
 };
 
-module.exports = { registerUser, checkUsers, loginUsers };

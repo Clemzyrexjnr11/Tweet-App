@@ -1,10 +1,10 @@
-const adminUser = require("../../models/adminjs/admin.js");
-const bcryptjs = require("bcryptjs");
+import adminUser  from "../../models/adminjs/admin.js";
+import bcryptjs from  "bcryptjs";
 
 
 const saltRounds = 10;
 
-const registerAdmin = function (req,res){
+ export const registerAdmin = function (req,res){
     let {name,email,permission,password} = req.body;
     let hashedPassword;
 
@@ -27,11 +27,9 @@ const registerAdmin = function (req,res){
             }
         }
     })
-
-    
 }
 
-async function checkAdminUsers() {
+ export async function checkAdminUsers() {
     try{
         const admin_user = await adminUser.findAll()
             return admin_user;
@@ -39,8 +37,3 @@ async function checkAdminUsers() {
         console.log({message:"error finding admin user"})
     }
 }
-
-
-
-
-module.exports = {checkAdminUsers,registerAdmin}

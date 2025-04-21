@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import sequelize from "../database";
+import sequelize from "../database.js";
 
 const adminUser = sequelize.define('admin',{
     id:{
@@ -29,4 +29,5 @@ const adminUser = sequelize.define('admin',{
 });
 adminUser.sync({alter:true}).then(()=>{console.log('admin table created')}).catch((err)=>{err.message});
 
-module.exports = adminUser;
+// module.exports = adminUser;
+export default adminUser

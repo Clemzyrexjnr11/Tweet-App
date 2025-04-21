@@ -1,6 +1,8 @@
-const express = require("express");
-const env = require("dotenv");
-const bodyParser = require("body-parser");
+import  express from "express";
+import  env from "dotenv";
+import  bodyParser from "body-parser";
+import router from './routes/routes.js'
+
 // const crypto = require ("crypto");
 // const pg = require ("pg");
 //  const bcryptjs = require("bcryptjs");
@@ -15,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 env.config();
 
 
-const router = require("./routes/routes.js") ;
 app.use('/',router)
 
 app.listen(PORT, () => {

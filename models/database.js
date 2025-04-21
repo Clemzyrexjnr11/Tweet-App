@@ -1,9 +1,11 @@
-const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize(process.env.DB_DATABASE,process.env.DB_USER,process.env.DB_PASSWORD,{
+import Sequelize from "sequelize"
+// import  env from "dotenv";
+
+const sequelize = new Sequelize(process.env.DB_DATABASE,"postgres","Clemzyrexjn#9",{
     host:process.env.DB_HOST,
     port:process.env.DB_PORT,
-    dialect:process.env.DB_USER,
+    dialect:"postgres",
 
     define:{
         freezeTableName:true,
@@ -17,4 +19,4 @@ sequelize.authenticate().then(()=>{
      console.log('connection error')
  })
 
-module.exports = sequelize;
+export default sequelize;
